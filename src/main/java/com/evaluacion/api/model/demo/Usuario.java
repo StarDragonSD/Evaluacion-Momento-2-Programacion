@@ -1,5 +1,7 @@
 package com.evaluacion.api.model.demo;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,6 +9,16 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 @Table(name = "usuarios")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Cliente.class, name = "Cliente"),
+        @JsonSubTypes.Type(value = Empleado.class, name = "Empleado"),
+        @JsonSubTypes.Type(value = Administrador.class, name = "Administrador")
+})
 public abstract class Usuario {
 
     @Id
