@@ -2,7 +2,6 @@ package com.evaluacion.api.model.demo.Controller;
 
 import com.evaluacion.api.model.demo.Solicitud;
 import com.evaluacion.api.model.demo.repository.SolicitudRepository;
-import com.evaluacion.api.model.demo.Service.GestorSolicitudes;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,17 +14,17 @@ import org.springframework.web.bind.annotation.*;
 public class SolicitudController {
 
     private final SolicitudRepository solicitudRepository;
-    private final GestorSolicitudes gestorSolicitudes;
 
-    public SolicitudController(SolicitudRepository solicitudRepository, GestorSolicitudes gestorSolicitudes) {
+    public SolicitudController(SolicitudRepository solicitudRepository) {
         this.solicitudRepository = solicitudRepository;
-        this.gestorSolicitudes = gestorSolicitudes;
     }
 
     @PostMapping
     public ResponseEntity<Solicitud> crearSolicitud(@Valid @RequestBody Solicitud solicitud) {
+        if (solicitud.getEstado() == null || solicitud.getEstado().isBlank()) {
+            solicitud.setEstado("PENDIENTE");
+        }
         Solicitud nuevaSolicitud = solicitudRepository.save(solicitud);
-        gestorSolicitudes.registrarSolicitud(nuevaSolicitud);
         return new ResponseEntity<>(nuevaSolicitud, HttpStatus.CREATED);
     }
 
