@@ -12,14 +12,14 @@ public class Solicitud {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "La descripción de la solicitud no puede estar vacía")
+    @NotBlank(message = "La descripción no puede estar vacía")
     private String descripcion;
 
     private String estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id", nullable = false)
-    @JsonIgnoreProperties("solicitudes")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties({"solicitudes", "hibernateLazyInitializer", "handler"})
     private Cliente cliente;
 
     public Solicitud() {}
