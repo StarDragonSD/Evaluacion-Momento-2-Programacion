@@ -1,0 +1,189 @@
+{
+  "info": {
+    "name": "Evaluacion Spring Boot - Usuarios y Solicitudes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Crear Cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Santiago Esparza\",\n  \"correo\": \"santiago@ejemplo.com\",\n  \"puntosFidelidad\": 150\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Crear Empleado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laura Morales\",\n  \"correo\": \"laura@ejemplo.com\",\n  \"cargo\": \"Desarrollador Backend\",\n  \"salario\": 3500.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Crear Administrador",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos Pérez\",\n  \"correo\": \"carlos@ejemplo.com\",\n  \"nivelAcceso\": 5\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Listar Usuarios (Paginado)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/usuarios?page=0&size=5&sort=nombre,asc",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["usuarios"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "5" },
+                { "key": "sort", "value": "nombre,asc" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener Usuario por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/usuarios/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["usuarios", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Solicitudes",
+      "item": [
+        {
+          "name": "Crear Solicitud",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descripcion\": \"Revisión de cuenta y facturación\",\n  \"cliente\": {\n    \"id\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/solicitudes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["solicitudes"]
+            }
+          }
+        },
+        {
+          "name": "Listar Solicitudes (Paginado)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/solicitudes?page=0&size=5",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["solicitudes"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "5" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener Solicitud por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/solicitudes/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["solicitudes", "1"]
+            }
+          }
+        },
+        {
+          "name": "Procesar Siguiente Solicitud (Cola)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/solicitudes/procesar-siguiente",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["solicitudes", "procesar-siguiente"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
