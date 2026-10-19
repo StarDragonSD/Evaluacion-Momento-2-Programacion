@@ -18,7 +18,7 @@ public abstract class Usuario {
     private String nombre;
 
     @NotBlank(message = "El correo no puede estar vacío")
-    @Email(message = "El formato del correo debe ser válido")
+    @Email(message = "Debe proporcionar un correo electrónico válido")
     @Column(nullable = false, unique = true)
     private String correo;
 

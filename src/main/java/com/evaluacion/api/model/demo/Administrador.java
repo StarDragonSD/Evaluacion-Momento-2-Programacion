@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "administradores")
 public class Administrador extends Usuario {
 
-    @NotNull(message = "El nivel de acceso no puede ser nulo")
+    @NotNull(message = "El nivel de acceso es obligatorio")
     @Min(value = 1, message = "El nivel de acceso mínimo es 1")
     @Max(value = 5, message = "El nivel de acceso máximo es 5")
     private Integer nivelAcceso;

@@ -2,7 +2,7 @@ package com.evaluacion.api.model.demo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,8 +13,8 @@ public class Empleado extends Usuario {
     @NotBlank(message = "El cargo no puede estar vacío")
     private String cargo;
 
-    @NotNull(message = "El salario no puede ser nulo")
-    @Min(value = 1, message = "El salario debe ser mayor a cero")
+    @NotNull(message = "El salario es obligatorio")
+    @DecimalMin(value = "0.01", message = "El salario debe ser mayor que cero")
     private Double salario;
 
     public Empleado() {}
